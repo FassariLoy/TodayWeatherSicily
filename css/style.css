@@ -1,0 +1,96 @@
+body {
+ /*background-image: url("./TodayWeatherSicily/image/Sicilia.gif");*/
+  /*display: flex;*/
+}
+
+header {
+  position: fixed;
+  background-color: lightblue;
+  left: 0;
+  top: 0;
+  right: 0;
+  /*box-shadow: 0 2px 32px rgba(0, 0, 0, 0.5);*/
+  /*height: 50px;*/
+  /*display: flex;*/
+  /*padding: 0 10px;*/
+}
+
+nav {
+  border : 2px solid red;
+  width : 100%;
+  display : flex;
+  justify-content: space-between;
+    
+  /*margin-left: auto;
+  
+  display: flex;*/
+
+  /*border: 2px solid red;
+  height: 100px;*/
+
+}
+
+.City {
+  border : 2px solid green;
+  padding: 10px;
+}
+
+.City__Sel {
+
+}
+
+.Day {
+  text-align: center;
+}
+
+.Language {
+  border : 2px solid green;
+  padding : 10px;
+  display : flex;
+  /*justify-content: space-between*/
+}
+
+.btnFlag {
+  width : 60px;
+  height : 30px;
+  margin-left: 20px;
+}
+
+.imgSicilydiv {
+  margin : 100px 100px 100px 100px;
+  border : 2px solid blue;
+  height : 80%;
+  display: flex;
+}
+
+.imgSicilydiv__ {
+  margin-top: 100px;
+  
+  /*margin-bottom: -500px;*/
+  background-color: red;
+  border : 2px solid rgb(4, 0, 255);
+  /*height: 200px;*/
+  background-image: url("./image/Sicilia.gif");
+  background-color: #cccccc;
+  background-position: top; 
+  background-repeat: no-repeat; 
+  /*background-size: cover; */
+  height: 80%;
+
+}
+
+.imgSicily__ {
+  margin-top: 100px;
+  
+  /*margin-bottom: -500px;*/
+  background-color: red;
+  border : 2px solid rgb(4, 0, 255);
+  /*height: 200px;*/
+  background-image: url("./image/Sicilia.gif");
+  background-color: #cccccc;
+  background-position: top; 
+  background-repeat: no-repeat; 
+  /*background-size: cover; */
+  height: 80%;
+
+}
