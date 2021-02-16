@@ -1,11 +1,21 @@
+const TitleH1 = document.querySelector("#H1");
+const secCard = document.querySelector(".secCard");
 const CitySel = document.querySelector(".City__Sel");
 
 const state = {
   config : {
     ApiKey : "67672cfdd9e43fec3c6ad2755f3bb7ad",
     urlMap : "http://api.openweathermap.org/data/2.5/weather",
-  },
-  dato : null,
+    urlIco : "http://openweathermap.org/img/wn/",
+  }
+}
+
+const objCity = {
+  id : null,
+  name : null,
+  description : null,
+  icon : null,
+  //aggiungere altre informazioni
 }
 
 const aryCity = [
@@ -47,28 +57,54 @@ const aryCity = [
   },
 ]
 
-async function getData(url) {
-  try {
-    const response = await fetch("http://api.openweathermap.org/data/2.5/weather?q=palermo&lang=it&appid=67672cfdd9e43fec3c6ad2755f3bb7ad");
-    const result = await response.json();
+//fn utility
+function DateToday () {
+  let Today = new Date()
 
+  const dd = String(Today.getDate()).padStart(2, '0');
+  const mm = String(Today.getMonth() + 1).padStart(2, '0'); 
+  const yyyy = Today.getFullYear();
+
+  return Today = dd + '/' + mm + '/' + yyyy;
+}
+
+//Importo da API
+async function getData(city, lang) {
+  
+  try {
+    //const response = await fetch("http://api.openweathermap.org/data/2.5/weather?q=palermo&lang=it&appid=67672cfdd9e43fec3c6ad2755f3bb7ad");
+    //const response = await fetch("http://api.openweathermap.org/data/2.5/weather?id=2524169&lang=it&appid=67672cfdd9e43fec3c6ad2755f3bb7ad&units=metric");
+    const response = await fetch(`${state.config.urlMap}?id=${city.id}&lang=${lang}&appid=${state.config.ApiKey}&units=metric`)
+    const result = await response.json();
+    
     if (!response.ok) {
       throw result;
     }
-    console.log(result)
+
+    objCity.id = city.id;
+    objCity.name = city.name;
+    objCity.description = result.weather[0].description;
+    objCity.icon = `${state.config.urlIco}${result.weather[0].icon}@2x.png`
+
+    //prova
+    CreateCard(objCity)
+
+    //console.log(result)
+    //console.log(objCity)
+    //console.log("--------------------")
+    
     return result;
+
   } catch (errorMessage) {
     console.log(errorMessage);
   }
 }
 
-getData();
-
 //Popolo la Select
 function GetSelectAryCity () {
-  aryCity.forEach(element => {
+  aryCity.forEach(city => {
     const newOpt = document.createElement("option");
-    newOpt.textContent = element.name;
+    newOpt.textContent = city.name;
     CitySel.appendChild(newOpt);
   });
   const newOpt = document.createElement("option");
@@ -77,15 +113,59 @@ function GetSelectAryCity () {
   CitySel.appendChild(newOpt);
 }
 
-function ShowCity () {
-  const a = Math.random()
-  console.log(a);
+function CreateCard (city) {
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("divCard")
+  const newH3 = document.createElement("h3");
+  newH3.textContent = city.name;
+  const newImg = document.createElement("img");
+  newImg.classList.add("imgCard")
+  newImg.alt = ""; //da aggiungere
+  newImg.src = city.icon;
+  const newPar = document.createElement("p");
+  //newPar.classList.add("Par")
+  newPar.textContent = city.description;
+  
+  /*
+  const newTit = document.createElement("h2");
+  newTit.textContent = strTit;
+  const newParAct = document.createElement("p");
+  newParAct.classList.add("Act")
+  if (Act !== 0) {
+    newParAct.textContent = `${Act} attività disponibili`;
+  } else {
+    newParAct.textContent = `Nessuna attività disponibile`;
+  }
+  */
 
-
+  secCard.appendChild(newDiv);
+  newDiv.appendChild(newH3);
+  newDiv.appendChild(newImg);
+  newDiv.appendChild(newPar);
+  
 }
 
+//aggiungo id e nome ???
+
+function GetCities () {
+//se selettore all mostra carosello altrimenti informazione singola citta
+  secCard.textContent = "";
+
+  //all
+  
+  aryCity.forEach(city => {
+    getData(city, "it");
+    
+  });
+}
+
+//main
+TitleH1.textContent = "Previsione del " + DateToday();
+GetCities();
 document.addEventListener("DOMContentLoaded", GetSelectAryCity, {once: true});
-document.addEventListener("change", ShowCity);
+document.addEventListener("change", GetCities);
+
+
 
 
 /* lingua 
