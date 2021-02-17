@@ -1,5 +1,5 @@
 body {
- /*background-image: url("./TodayWeatherSicily/image/Sicilia.gif");*/
+  font-family: 'Roboto Slab', serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,7 +43,8 @@ nav {
   /*align-items: center;*/
 }
 
-h3, p {
+h1, h3, p {
+  margin: 0px;
   text-align: center;
 }
 
@@ -56,6 +57,7 @@ h3, p {
 
 .btnFlag {
   padding: 0px;
+  border-radius: 5px;
   width : 60px;
   height : 30px;
   margin-left: 20px;
@@ -64,6 +66,7 @@ h3, p {
 .imgFlag {
   width: 100%;
   height: 100%;
+  
   /*max-height: 30px;*/
 }
 
@@ -75,7 +78,7 @@ h3, p {
   border : 2px solid blue;
 }
 
-.secCard {
+.MultiCard {
   display: flex;
   padding: 5px;
   flex-wrap: nowrap;
@@ -83,12 +86,55 @@ h3, p {
   /*overflow-y: hidden;*/
 }
 
-h1, h3, p {
-  margin: 0px;
+.SingleCard {
+  /*display: flex;*/
+  padding: 10px;
 }
 
-.divCard {
-  background-color: lightgray;
+.divCardSingle {
+  /*display:inline-flex;
+  box-pack: center;
+  box-align: center;
+
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;*/
+    
+  display: flex;
+  /*justify-content : center;*/
+  flex-direction : row;
+  
+  /*flex-wrap: wrap;*/
+  /*flex-direction: column;*/
+}
+
+.divImgSingle {
+  border : 2px solid red;
+  display: flex;
+  margin: 0px 10px 0px 0px ;
+}
+
+.divTitleSingle {
+  text-align: center;
+  width: 200px;
+  border : 2px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px 10px;
+}
+
+.divParamSingle {
+  width: 200px;
+  border : 2px solid yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px 10px;
+}
+
+.divCardMulti {
+  background-color: rgb(70, 150, 230);
   border: 2px solid lightslategray;
   border-radius: 5px;
   min-width: 160px;
@@ -99,33 +145,27 @@ h1, h3, p {
 }
 
 .imgCard {
-  width: 100%;
-  height: 140px;
+  size: 100%;
+  /*width: 100%;
+  height: 140px;*/
   margin: 0;
+  background-color: rgb(70, 150, 230);
 }
 
 .imgSicily {
   display : flex;
   height: 600px;
   
-
   width: 80%;
   border : 2px solid violet;
   
-  background-image: url("./image/Sicilia.gif");
-  background-color: #cccccc;
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-image : url("./image/Sicilia.gif");
+  background-size: 100%;
+  background-color : #cccccc;
+  /*background-clip : padding-box;*/
+  background-position : top left; 
+  background-repeat : no-repeat; 
  
-}
-
-.imgXX {
-  width: 100%;
-  height: 100%;
-  background-image: url("./image/Sicilia.gif");
-  background-color: #cccccc;
-  background-position: top; 
-  background-repeat: no-repeat; 
 }
 
 /*

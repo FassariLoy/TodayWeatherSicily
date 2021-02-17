@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/Normalize.css"/>
   <link rel="stylesheet" href="css/style.css"/>
   <title>Today Weather Sicily</title>
@@ -13,7 +17,7 @@
     <nav>
 
       <div class="City">
-        <select class="City__Sel" name="" id="">
+        <select class="selCity" name="" id="">
         <!--  <option value="CT">Catania</option>
           <option value="ME">Messina</option>
           <option value="PA">Palermo</option>-->
@@ -43,7 +47,25 @@
     <!-- singolo o carosello card-->
     <section class="secCard">
       <!--
-      <div class="divCard">
+      <div class="divCardSingle">
+        <div class="divImgSingle">
+          <img class="imgCard" src="http://openweathermap.org/img/wn/10d@4x.png" alt="">
+        </div>
+        <div class="divTitleSingle">
+          <h2>Amsterdam</h2>
+          <p>Nuvole sparse</p>
+        </div>
+        <div class="divParamSingle">
+          
+          <li>Temperature Min</li>
+          <li>Temperature Max</li>
+          <li>Umidità</li>
+          <li>Vento</li>
+        </div>
+      </div>
+      -->
+      <!--
+      <div class="divCardMulti">
           <h3>Amsterdam</h3>
           <img class="imgCard"  src="https://images.musement.com/cover/0002/15/amsterdam_header-114429.jpeg" alt="">
           <p>Nuvole sparse</p>
@@ -90,7 +112,7 @@
   
   <div class="imgSicily">
     <!-- immagine <a class="imgSicily" href="./image/Sicilia.gif"></a> -->
-    
+    <p class="prova">Sicilia</p>
   </div>
 
    <script src="js/index.js"></script>
