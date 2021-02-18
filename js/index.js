@@ -71,14 +71,82 @@ const aryCity = [
 //fn utility
 function DateToday () {
   let Today = new Date()
-
+  let gg = String(Today.getDay());
   const dd = String(Today.getDate()).padStart(2, '0');
-  const mm = String(Today.getMonth() + 1).padStart(2, '0'); 
-  const yyyy = Today.getFullYear();
+  let mm = String(Today.getMonth() + 1).padStart(2, '0');
+  //const mm = String(Today.getMonth() + 1).padStart(2, '0'); 
+  //const yyyy = Today.getFullYear();
+  
+  switch (gg) {
+    case "0":
+      gg = "Sun"
+      break;
+    case "1":
+      gg = "Mon"
+      break;
+    case "2":
+      gg = "Tue"
+      break;
+    case "3":
+      gg = "Wed"
+      break;
+    case "4":
+      gg = "Thu"
+      break;
+    case "5":
+      gg = "Fry"
+      break;
+    case "6":
+      gg = "Sat"
+      break;
+  }
 
-  return Today = dd + '/' + mm + '/' + yyyy;
+  switch (mm) {
+    case "01":
+      mm = "Gen"
+      break;
+    case "02":
+      mm = "Feb"
+      break;
+    case "03":
+      mm = "Mar"
+      break;
+    case "04":
+      mm = "Apr"
+      break;
+    case "05":
+      mm = "May"
+      break;
+    case "06":
+      mm = "Jun"
+      break;
+    case "07":
+      mm = "Jul"
+      break;
+    case "08":
+      mm = "Ago"
+      break;
+    case "09":
+      mm = "Sep"
+      break;
+    case "10":
+      mm = "Oct"
+      break;
+    case "11":
+      mm = "Nov"
+      break;
+    case "12":
+      mm = "Dec"
+      break;
+  }
+
+  //return Today = gg + '/' + mm + '/' + yyyy;
+  return Today = gg + ' ' + dd + ' ' + mm ;
 }
 
+function capitalizeFLetter(strWord) { 
+  return strWord[0].toUpperCase() + strWord.slice(1); 
+} 
 
 /*
   const text = evt.target.value.toLowerCase();
@@ -99,7 +167,7 @@ async function getData(city, lang, type) {
 
     objCity.id = city.id;
     objCity.name = city.name;
-    objCity.description = result.weather[0].description;
+    objCity.description = capitalizeFLetter(result.weather[0].description);
     objCity.temp_max = result.main.temp_max;
     objCity.temp_min = result.main.temp_min;
     objCity.humidity = result.main.humidity;
@@ -111,14 +179,14 @@ async function getData(city, lang, type) {
     AddCities(objCity);
     //console.log("--------------------")
     */
-    //objCity.icon = "./css/image/11.png"
+    
     if (type === "Multi") {
       //objCity.icon = `./css/image/${result.weather[0].icon}.png`
       objCity.icon = `${state.config.urlIco}${result.weather[0].icon}@2x.png`
       CreateCardMulti(objCity);
     } else {
-      objCity.icon = `./css/image/${result.weather[0].icon}.png`
-      //objCity.icon = `${state.config.urlIco}${result.weather[0].icon}@4x.png`
+      //objCity.icon = `./css/image/${result.weather[0].icon}.png`
+      objCity.icon = `${state.config.urlIco}${result.weather[0].icon}@4x.png`
       CreateCardSingle(objCity);
     }
         
@@ -129,31 +197,20 @@ async function getData(city, lang, type) {
   }
 }
 
-//**prova
-/*
-let sommaAry = [];
-
-function AddCities(city) {
-  sommaAry.push(city)
-  state.cities.push(city);
-  console.log(sommaAry)
-}
-*/
-//**fine prova
-
 //Popolo la Select
 function GetSelectAryCity () {
+  const newOpt = document.createElement("option");
+  newOpt.textContent = "* Select City *";
+  newOpt.selected = true;
+  selCity.appendChild(newOpt);
+
   aryCity.forEach(city => {
     const newOpt = document.createElement("option");
     newOpt.textContent = city.name;
     selCity.appendChild(newOpt);
   });
-  const newOpt = document.createElement("option");
-  newOpt.textContent = "All";
-  newOpt.selected = true;
-  selCity.appendChild(newOpt);
-
-  selCity.value = "All";
+ 
+  selCity.value = "* Select City *";
 
   GetCities();
 }
@@ -169,7 +226,7 @@ function CreateCardMulti (city) {
   newImg.alt = ""; //da aggiungere
   newImg.src = city.icon;
   const newPar = document.createElement("p");
-  newPar.textContent = city.description.toUpperCase();
+  newPar.textContent = city.description;
 
   secCard.classList.remove("SingleCard");
   secCard.classList.add("MultiCard");
@@ -199,15 +256,17 @@ function CreateCardSingle (city) {
   newH2.textContent = city.name;
   
   const newPar = document.createElement("p");
-  newPar.textContent = city.description.toUpperCase();
+  newPar.textContent = city.description;
   
   const divPar = document.createElement("div");
   divPar.classList.add("divParamSingle");
 
   const li01 = document.createElement("li");
-  li01.textContent = `Temp. Min: ${city.temp_min} °C`;
+  li01.classList.add("Min")
+  li01.textContent = `Min: ${city.temp_min} °C`;
   const li02 = document.createElement("li");
-  li02.textContent = `Temp. Max: ${city.temp_max} °C`;
+  li02.classList.add("Max")
+  li02.textContent = `Max: ${city.temp_max} °C`;
   const li03 = document.createElement("li");
   li03.textContent = `Humidity: ${city.humidity}%`;
   const li04 = document.createElement("li");
@@ -228,11 +287,11 @@ function CreateCardSingle (city) {
   divPar.appendChild(li04);
 }
 
-//Gestione Select - se selettore all mostra carosello altrimenti informazione singola città
+//Gestione Select - se selettore "* Select City" mostra carosello altrimenti informazione singola città
 function GetCities () {
   secCard.textContent = "";
   
-  if (selCity.value === "All") {
+  if (selCity.value === "* Select City *") {
     aryCity.forEach((city) => {
       getData(city, strLanguage, "Multi");
     });
@@ -258,7 +317,7 @@ function LanguageFR () {
 }
 
 //main
-TitleH1.textContent = "Meteo del " + DateToday();
+TitleH1.textContent = DateToday();
 
 document.addEventListener("DOMContentLoaded", GetSelectAryCity, {once: true});
 document.addEventListener("change", GetCities);
