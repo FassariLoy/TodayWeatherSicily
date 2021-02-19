@@ -36,8 +36,6 @@ header {
   top: 0;
   right: 0;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
-  /*height: 50px;*/
-  /*display: flex;*/
 }
 
 nav {
@@ -102,13 +100,12 @@ nav {
 .SingleCard {
   padding: 10px;
   border-radius: 10px;
-  width: 98%;
+  width: 100%;
   background-color: var(--backgroundHard);
 }
 
 .divCardSingle {
   background-color: var(--backgroundHard);
-  /*margin: 2px solid black;*/
   display: flex;
   justify-content: space-between;
 }
@@ -154,7 +151,6 @@ nav {
   max-width: 160px;
   height: 185px;
   margin: 5px;
-  /*transition: 0.4s ease;*/
 }
 
 .imgCard {
@@ -163,24 +159,84 @@ nav {
   background-color: var(--backgroundHard);
 }
 
+.Sicily {
+  margin: 40px 0px 0px 0px;
+  width: 100%;
+  height: 551px;
+}
+
 .imgSicily {
-  margin: 40px 0 0 0;
-  display : flex;
-  height: 1000px;
   
-  width: 90%;
-  border : 2px solid violet;
-  
-  /*background-image : url("./image/Sicilia.gif");*/
+  /*display: flex; */
+  width: 750px;
+  height: 551px;
+
+  border-radius: 10px;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
 
-  background-image : url("./image/sic_2.png");
-  background-size: 100%;
-  background-color : var(--textColor);
+  background-image : url("../image/Sicilia.png");
+  background-size: cover;
   
-  /*background-clip : padding-box;*/
-  background-position : top left; 
+  background-color : var(--backgroundSoft);
+   
+  background-position : top right; 
   background-repeat : no-repeat; 
+  
+  position: relative;
+}
+
+.AG {
+  position: absolute;
+  top: 280px;
+  left: 235px;
+}
+
+.CL {
+  position: absolute;
+  top: 235px;
+  left: 330px;
+}
+
+.CT {
+  position: absolute;
+  top: 235px;
+  left: 545px;
+}
+
+.EN {
+  position: absolute;
+  top: 195px;
+  left: 390px;
+}
+
+.ME {
+  position: absolute;
+  top: 85px;
+  left: 635px;
+}
+
+.PA {
+  position: absolute;
+  top: 100px;
+  left: 160px;
+}
+
+.RG {
+  position: absolute;
+  top: 380px;
+  left: 490px;
+}
+
+.SR {
+  position: absolute;
+  top: 360px;
+  left: 580px;
+}
+
+.TP {
+  position: absolute;
+  top: 130px;
+  left: 40px;
 }
 
 @media (max-width: 630px) {
@@ -200,3 +256,10 @@ nav {
   }
 }
  
+@media (min-width: 825px) {
+ 
+  .Sicily {
+    display: flex;
+    justify-content: center;
+  }
+}
