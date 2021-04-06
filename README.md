@@ -1,1 +1,3 @@
 # TodayWeatherSicily
+
+Previsioni meteo giornaliere.
